@@ -1,5 +1,19 @@
 
-```
+# 🎓 Backend Coderhouse - Entrega Final
+
+E-commerce backend con arquitectura por capas, autenticación JWT, sistema de roles y lógica de compra.
+
+## 🛠️ Tecnologías
+
+- Node.js + Express
+- MongoDB Atlas + Mongoose
+- Passport.js (JWT + Local strategies)
+- Nodemailer (recuperación de contraseña)
+- bcrypt (hash de contraseñas)
+- dotenv (variables de entorno)
+
+## 📁 Estructura del Proyecto
+
 Backend_2_coderhouse
 ├─ package-lock.json
 ├─ package.json
@@ -48,4 +62,4 @@ Backend_2_coderhouse
       ├─ jwt.js
       └─ mail.js
 
-```
+
