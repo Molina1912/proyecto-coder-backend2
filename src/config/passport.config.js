@@ -1,4 +1,3 @@
-// src/config/passport.config.js
 import passport from 'passport';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import { Strategy as LocalStrategy } from 'passport-local';
@@ -7,7 +6,7 @@ import UsersService from '../services/users.service.js';
 
 const usersService = new UsersService();
 
-// 🔹 Cookie Extractor (DEFINIRLO PRIMERO ✅)
+
 const cookieExtractor = (req) => {
     let token = null;
     if (req?.cookies) {
@@ -16,7 +15,7 @@ const cookieExtractor = (req) => {
     return token;
 };
 
-// 🔹 Estrategia LOCAL para registro
+
 passport.use('register', new LocalStrategy({
     passReqToCallback: true,
     usernameField: 'email'
@@ -38,7 +37,7 @@ passport.use('register', new LocalStrategy({
     }
 }));
 
-// 🔹 Estrategia LOCAL para login
+
 passport.use('login', new LocalStrategy({
     usernameField: 'email'
 }, async (email, password, done) => {
@@ -50,20 +49,20 @@ passport.use('login', new LocalStrategy({
     }
 }));
 
-// 🔹 Estrategia JWT para rutas protegidas
+
 passport.use('current', new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
     secretOrKey: config.jwtSecret
 }, async (jwt_payload, done) => {
     try {
-        // El token ya contiene los datos, no consultamos BD
+        
         return done(null, jwt_payload);
     } catch (error) {
         return done(error, false);
     }
 }));
 
-// 🔹 Inicializar Passport
+
 export const initializePassport = () => {
     passport.initialize();
 };

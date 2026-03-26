@@ -1,9 +1,8 @@
-// src/controllers/carts.controller.js
 import CartsService from '../services/carts.service.js';
 
 const cartsService = new CartsService();
 
-// 🔹 Listar todos los carritos
+
 export const getAll = async (req, res, next) => {
     try {
         const carts = await cartsService.getAll();
@@ -13,7 +12,7 @@ export const getAll = async (req, res, next) => {
     }
 };
 
-// 🔹 Obtener carrito por ID
+
 export const getById = async (req, res, next) => {
     try {
         const { cid } = req.params;
@@ -32,7 +31,7 @@ export const getById = async (req, res, next) => {
     }
 };
 
-// 🔹 Crear carrito
+
 export const create = async (req, res, next) => {
     try {
         const userId = req.user?.id;
@@ -55,7 +54,7 @@ export const create = async (req, res, next) => {
     }
 };
 
-// 🔹 Agregar producto al carrito
+
 export const addProduct = async (req, res, next) => {
     try {
         const { cid, pid } = req.params;
@@ -80,7 +79,7 @@ export const addProduct = async (req, res, next) => {
     }
 };
 
-// 🔹 Eliminar producto del carrito
+
 export const removeProduct = async (req, res, next) => {
     try {
         const { cid, pid } = req.params;
@@ -96,7 +95,7 @@ export const removeProduct = async (req, res, next) => {
     }
 };
 
-// 🔹 Actualizar carrito
+
 export const update = async (req, res, next) => {
     try {
         const { cid } = req.params;
@@ -114,7 +113,7 @@ export const update = async (req, res, next) => {
     }
 };
 
-// 🔹 Vaciar carrito
+
 export const clear = async (req, res, next) => {
     try {
         const { cid } = req.params;
@@ -130,7 +129,7 @@ export const clear = async (req, res, next) => {
     }
 };
 
-// 🔹 🔥 FINALIZAR COMPRA - Genera Ticket (REQUISITO CLAVE)
+
 export const purchase = async (req, res, next) => {
     try {
         const { cid } = req.params;

@@ -1,13 +1,16 @@
 import jwt from 'jsonwebtoken';
 import config from '../config/config.js';
 
-// Generar token
 export const generateToken = (user) => {
     const token = jwt.sign(
         { 
-            id: user._id, 
-            email: user.email, 
-            role: user.role 
+            id: user._id,
+            email: user.email,
+            role: user.role,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            cart: user.cart,
+            age: user.age
         },
         config.jwtSecret,
         { expiresIn: '24h' }
@@ -15,7 +18,6 @@ export const generateToken = (user) => {
     return token;
 };
 
-// Verificar token
 export const verifyToken = (token) => {
     try {
         const decoded = jwt.verify(token, config.jwtSecret);

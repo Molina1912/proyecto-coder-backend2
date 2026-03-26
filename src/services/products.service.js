@@ -1,4 +1,3 @@
-// src/services/products.service.js
 import ProductsDAO from '../dao/products.dao.js';
 
 const productsDAO = new ProductsDAO();
@@ -14,12 +13,12 @@ export default class ProductsService {
     }
     
     async create(productData, isAdmin = false) {
-        // 🔹 Solo admin puede crear productos
+        
         if (!isAdmin) {
             throw new Error('Solo administradores pueden crear productos');
         }
         
-        // 🔹 Verificar que el código sea único
+        
         const existing = await productsDAO.getAll({ query: productData.code });
         if (existing.some(p => p.code === productData.code)) {
             throw new Error('El código de producto ya existe');
@@ -42,7 +41,7 @@ export default class ProductsService {
         return await productsDAO.delete(id);
     }
     
-    // 🔹 Lógica de negocio: verificar stock antes de compra
+    
     async checkAvailability(productId, quantity) {
         const hasStock = await productsDAO.checkStock(productId, quantity);
         if (!hasStock) {
@@ -51,7 +50,7 @@ export default class ProductsService {
         return true;
     }
     
-    // 🔹 Procesar compra: reducir stock
+    
     async processPurchase(productId, quantity) {
         await this.checkAvailability(productId, quantity);
         return await productsDAO.reduceStock(productId, quantity);

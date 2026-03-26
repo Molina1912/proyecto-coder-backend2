@@ -15,8 +15,13 @@ const userSchema = new mongoose.Schema({
     role: { 
         type: String, 
         enum: ['user', 'admin'], 
-        default: 'user' 
-    }
+        default: 'admin' 
+    },
+    
+    
+    recoveryToken: { type: String, default: null },
+    recoveryTokenExpires: { type: Date, default: null }
+    
 }, { timestamps: true });
 
 export default mongoose.model('User', userSchema);

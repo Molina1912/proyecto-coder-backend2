@@ -1,4 +1,3 @@
-// src/dao/tickets.dao.js
 import ticketModel from '../models/ticket.model.js';
 
 export default class TicketsDAO {
@@ -16,7 +15,7 @@ export default class TicketsDAO {
     }
     
     async create(ticketData) {
-        // ✅ El code se genera automáticamente en el modelo
+     
         return await ticketModel.create(ticketData);
     }
     

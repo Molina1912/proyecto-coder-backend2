@@ -1,15 +1,14 @@
-// src/controllers/users.controller.js
 import UsersService from '../services/users.service.js';
 import { UserDTO } from '../dto/user.dto.js';
 
 const usersService = new UsersService();
 
-// 🔹 Listar todos los usuarios (SOLO ADMIN)
+
 export const getAll = async (req, res, next) => {
     try {
         const users = await usersService.getAll();
         
-        // ✅ Usar DTO para no exponer datos sensibles en lista
+        
         const usersDTO = UserDTO.toResponse(users);
         
         res.json({
@@ -21,7 +20,7 @@ export const getAll = async (req, res, next) => {
     }
 };
 
-// 🔹 Obtener usuario por ID (SOLO ADMIN)
+
 export const getById = async (req, res, next) => {
     try {
         const { uid } = req.params;
@@ -34,7 +33,7 @@ export const getById = async (req, res, next) => {
             });
         }
         
-        // ✅ Usar DTO para respuesta
+        
         const userDTO = UserDTO.toResponse(user);
         
         res.json({
@@ -46,12 +45,12 @@ export const getById = async (req, res, next) => {
     }
 };
 
-// 🔹 Crear usuario (SOLO ADMIN)
+
 export const create = async (req, res, next) => {
     try {
         const { first_name, last_name, email, age, password, role } = req.body;
         
-        // Validaciones básicas
+        
         if (!first_name || !last_name || !email || !password) {
             return res.status(400).json({
                 result: "error",
@@ -65,10 +64,10 @@ export const create = async (req, res, next) => {
             email,
             age,
             password,
-            role: role || 'user'  // Por defecto 'user'
+            role: role || 'user'  
         });
         
-        // ✅ Usar DTO para no exponer password hash
+        
         const userDTO = UserDTO.toResponse(user);
         
         res.status(201).json({
@@ -81,14 +80,12 @@ export const create = async (req, res, next) => {
     }
 };
 
-// 🔹 Actualizar usuario por ID (SOLO ADMIN)
+
 export const update = async (req, res, next) => {
     try {
         const { uid } = req.params;
         const updateData = req.body;
-        
-        // ✅ No permitir actualizar password desde este endpoint
-        // (usar sistema de recuperación para eso)
+
         if (updateData.password) {
             delete updateData.password;
         }
@@ -102,7 +99,7 @@ export const update = async (req, res, next) => {
             });
         }
         
-        // ✅ Usar DTO para respuesta
+        
         const userDTO = UserDTO.toResponse(updatedUser);
         
         res.json({
@@ -115,7 +112,7 @@ export const update = async (req, res, next) => {
     }
 };
 
-// 🔹 Eliminar usuario por ID (SOLO ADMIN)
+
 export const deleteUser = async (req, res, next) => {
     try {
         const { uid } = req.params;
@@ -129,7 +126,7 @@ export const deleteUser = async (req, res, next) => {
             });
         }
         
-        // ✅ Usar DTO para respuesta (sin datos sensibles)
+        
         const userDTO = UserDTO.toResponse(deletedUser);
         
         res.json({

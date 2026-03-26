@@ -1,4 +1,3 @@
-// src/services/tickets.service.js
 import TicketsDAO from '../dao/tickets.dao.js';
 
 const ticketsDAO = new TicketsDAO();
@@ -18,10 +17,10 @@ export default class TicketsService {
     }
     
     async create(ticketData) {
-        // ✅ El code y purchase_datetime se generan en el modelo
+        
         return await ticketsDAO.create({
             ...ticketData,
-            purchase_datetime: new Date() // Por si acaso
+            purchase_datetime: new Date() 
         });
     }
     

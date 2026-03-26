@@ -1,9 +1,7 @@
-// src/controllers/products.controller.js
 import ProductsService from '../services/products.service.js';
 
 const productsService = new ProductsService();
 
-// 🔹 Listar todos los productos (PÚBLICO)
 export const getAll = async (req, res, next) => {
     try {
         const { limit = 10, page = 1, sort, query } = req.query;
@@ -24,7 +22,6 @@ export const getAll = async (req, res, next) => {
     }
 };
 
-// 🔹 Obtener producto por ID (PÚBLICO)
 export const getById = async (req, res, next) => {
     try {
         const { pid } = req.params;
@@ -46,7 +43,6 @@ export const getById = async (req, res, next) => {
     }
 };
 
-// 🔹 Crear producto (SOLO ADMIN)
 export const create = async (req, res, next) => {
     try {
         const productData = req.body;
@@ -64,7 +60,6 @@ export const create = async (req, res, next) => {
     }
 };
 
-// 🔹 Actualizar producto (SOLO ADMIN)
 export const update = async (req, res, next) => {
     try {
         const { pid } = req.params;
@@ -90,7 +85,6 @@ export const update = async (req, res, next) => {
     }
 };
 
-// 🔹 Eliminar producto (SOLO ADMIN)
 export const deleteProduct = async (req, res, next) => {
     try {
         const { pid } = req.params;

@@ -1,8 +1,7 @@
-// src/middlewares/auth.middleware.js
 import passport from 'passport';
 import config from '../config/config.js';
 
-// 🔹 Middleware personalizado para Passport (Unit 4)
+
 export const passportCall = (strategy) => {
     return async (req, res, next) => {
         passport.authenticate(strategy, (error, user, info) => {
@@ -21,7 +20,7 @@ export const passportCall = (strategy) => {
     };
 };
 
-// 🔹 Generar cookie con JWT (usa config.cookie)
+
 export const generateTokenCookie = (res, token) => {
     res.cookie('coderhouse_token', token, {
         maxAge: config.cookie.maxAge,

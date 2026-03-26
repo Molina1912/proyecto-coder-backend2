@@ -1,9 +1,9 @@
 
-# 🎓 Backend Coderhouse - Entrega Final
+# Backend Coderhouse - Entrega Final
 
 E-commerce backend con arquitectura por capas, autenticación JWT, sistema de roles y lógica de compra.
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 - Node.js + Express
 - MongoDB Atlas + Mongoose
@@ -12,7 +12,7 @@ E-commerce backend con arquitectura por capas, autenticación JWT, sistema de ro
 - bcrypt (hash de contraseñas)
 - dotenv (variables de entorno)
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 Backend_2_coderhouse
 ├─ package-lock.json
@@ -63,3 +63,45 @@ Backend_2_coderhouse
       └─ mail.js
 
 
+
+---
+
+## 📥 Instalación y Configuración
+
+### Prerrequisitos
+- Node.js v18 o superior
+- MongoDB Atlas (cuenta gratuita)
+- Git instalado
+
+## Clonar el repositorio
+bash
+
+git clone https://github.com/Molina1912/proyecto-coder-backend2.git
+
+# Navegar al directorio
+cd proyecto-coder-backend2
+
+# 1. Registro de usuario
+POST http://localhost:8080/api/sessions/register
+Content-Type: application/json
+
+{
+  "first_name": "Juan",
+  "last_name": "Pérez",
+  "email": "juan@email.com",
+  "age": 30,
+  "password": "123456"
+}
+
+# 2. Login (recibe cookie JWT)
+POST http://localhost:8080/api/sessions/login
+Content-Type: application/json
+
+{
+  "email": "juan@email.com",
+  "password": "123456"
+}
+
+# 3. Obtener usuario actual (protegido)
+GET http://localhost:8080/api/sessions/current
+# Postman envía la cookie automáticamente

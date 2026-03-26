@@ -1,4 +1,3 @@
-// src/dao/products.dao.js
 import productModel from '../models/product.model.js';
 
 export default class ProductsDAO {
@@ -33,7 +32,6 @@ export default class ProductsDAO {
         return await productModel.findByIdAndDelete(id);
     }
     
-    // 🔹 Método especial: reducir stock
     async reduceStock(productId, quantity) {
         return await productModel.findByIdAndUpdate(
             productId,
@@ -42,7 +40,6 @@ export default class ProductsDAO {
         ).lean();
     }
     
-    // 🔹 Verificar stock disponible
     async checkStock(productId, quantity) {
         const product = await productModel.findById(productId);
         return product && product.stock >= quantity;
